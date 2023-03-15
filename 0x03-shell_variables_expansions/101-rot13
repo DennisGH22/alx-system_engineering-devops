@@ -1,2 +1,2 @@
 #!/bin/bash
-tr 'NFPVV' 'NFPVV'
+tr 'ASCII' 'NFPVV'
