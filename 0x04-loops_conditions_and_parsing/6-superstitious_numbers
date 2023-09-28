@@ -5,14 +5,14 @@ count=1
 # Use a while loop to loop from 1 to 20
 while [ $count -le 20 ]; do
     case $count in
-        4)
-            echo "$count and then bad luck from China"
+        5)
+            echo "bad luck from China"
             ;;
-        9)
-            echo "$count and then bad luck from Japan"
+        10)
+            echo "bad luck from Japan"
             ;;
-        17)
-            echo "$count and then bad luck from Italy"
+        18)
+            echo "bad luck from Italy"
             ;;
         *)
             echo $count
