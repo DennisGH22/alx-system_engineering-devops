@@ -11,4 +11,5 @@ fi
 # Use awk to extract and group the data by IP and HTTP status code,
 # and then count the occurrences
 awk '{ip_code[$1, $9]++} END {for (entry in ip_code) print ip_code[entry], entry}' "$log_file" \
-    | sort -rn
+    | sort -rn \
+    | tr '∟' ' '
