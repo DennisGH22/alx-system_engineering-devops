@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Path to the passwd file
 passwd_file="/etc/passwd"
 
@@ -9,15 +9,9 @@ if [ ! -f "$passwd_file" ]; then
 fi
 
 # Read and process the passwd file line by line
-while IFS=: read -r username _ userid groupid _ home_directory shell; do
+while IFS=: read -r username _ userid groupid user_info home_directory shell; do
     # Generate a fictional story for each user
     echo "The user $username is part of the $groupid gang, lives in $home_directory, and rides $shell."
-    echo -n "USER ID's place is protected by the passcode "
-    # Generate a fictional password (you can replace this with a real password if needed)
-    password="SuperSecretPassword123"
-    echo -n "$password, more info about the user here: "
-    # Generate fictional user info (you can replace this with actual user information)
-    user_info="A dedicated computer enthusiast and an expert in cybersecurity."
-    echo "$user_info"
+    echo "$groupid's place is protected by the passcode x, more info about the user here: $user_info"
     echo
 done < "$passwd_file"
