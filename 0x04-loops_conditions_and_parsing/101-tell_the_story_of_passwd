@@ -1,17 +1,9 @@
-#!/bin/bash
-# Path to the passwd file
+#!/usr/bin/env bash
+# Script that displays the content of the file /etc/passwd, using the while loop + IFS.
 passwd_file="/etc/passwd"
 
-# Check if the passwd file exists
-if [ ! -f "$passwd_file" ]; then
-    echo "Error: $passwd_file does not exist."
-    exit 1
-fi
-
-# Read and process the passwd file line by line
-while IFS=: read -r username _ userid groupid user_info home_directory shell; do
-    # Generate a fictional story for each user
-    echo "The user $username is part of the $groupid gang, lives in $home_directory, and rides $shell."
-    echo "$groupid's place is protected by the passcode x, more info about the user here: $user_info"
-    echo
+while IFS=: read -r username password userid groupid user_info home_directory shell
+do
+    echo "The user $username is part of the $groupid gang, lives in $home_directory and rides $shell.
+	$userid's place is protected by the passcode $password, more info about the user here: $user_info"
 done < "$passwd_file"
