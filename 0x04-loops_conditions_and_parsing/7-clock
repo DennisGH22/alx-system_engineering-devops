@@ -8,7 +8,9 @@ while [ $hour -le 12 ]; do
     minute=1
     while [ $minute -le 59 ]; do
         echo "$minute"
-        minute=$((minute+1))
+		# Increment minutes
+        ((minute++))
     done
-    hour=$((hour+1))
+	# Increment hours
+    ((hour++))
 done
