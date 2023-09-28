@@ -8,7 +8,5 @@ if [ ! -f "$log_file" ]; then
     exit 1
 fi
 
-# Use awk to process the log file and replace ∟ with whitespace
-awk '{ gsub(/\xE2\x88\x9F/, " "); print }' "$log_file" \
-    | awk '{ip_code[$1, $9]++} END {for (entry in ip_code) printf "%4d %s\n", ip_code[entry], entry}' \
-    | sort -rn
+# Use awk to extract IP addresses and HTTP status codes, count occurrences, and sort
+awk '{ print $1, $9 }' "$log_file" | sort | uniq -c | sort -nr
