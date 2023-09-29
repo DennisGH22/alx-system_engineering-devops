@@ -2,7 +2,6 @@
 # Function to handle SIGTERM signal
 terminate() {
     echo "I am invincible!!!"
-    exit 0
 }
 
 # Register the terminate function to handle SIGTERM
