@@ -3,4 +3,4 @@
 pids=$(pgrep -f bash)
 
 # Display the PID and process name
-echo "$pid"
+echo "$pids"
