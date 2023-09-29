@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
-# Use pkill to send a termination signal to the process
-pkill -f '7-highlander'
+# Function to handle SIGTERM signal
+terminate() {
+    echo "I am invincible!!!"
+    pkill -f '7-highlander'
+    exit 0
+}
+
+# Register the terminate function to handle SIGTERM
+trap 'terminate' SIGTERM
+
+# Infinite loop with sleep
+while true; do
+    echo "To infinity and beyond indefinitely"
+    sleep 2
+done
