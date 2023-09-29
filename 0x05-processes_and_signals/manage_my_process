@@ -45,3 +45,9 @@ case "$1" in
         exit 1
         ;;
 esac
+
+# Main loop
+while true; do
+    write_to_log "I am alive!"
+    sleep 2
+done
