@@ -5,7 +5,7 @@ start_process() {
         echo "manage_my_process is already running (PID: $(cat /var/run/my_process.pid))."
     else
         echo "manage_my_process started"
-        ./manage_my_process.sh &
+        ./manage_my_process &
         echo $! > /var/run/my_process.pid
     fi
 }
