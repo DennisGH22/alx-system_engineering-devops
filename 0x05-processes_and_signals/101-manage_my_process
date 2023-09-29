@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Function to start the process
 start_process() {
-	echo "manage_my_process started"
 	./manage_my_process &
 	echo $! > /var/run/my_process.pid
 }
@@ -11,31 +10,22 @@ stop_process() {
 	pid=$(cat /var/run/my_process.pid)
 	kill $pid
 	rm /var/run/my_process.pid
-	echo "manage_my_process stopped"
-}
-
-# Function to restart the process
-restart_process() {
-	# stops the process
-	pid=$(cat /var/run/my_process.pid)
-	kill $pid
-	rm /var/run/my_process.pid
-	# start the process
-	./manage_my_process &
-	echo $! > /var/run/my_process.pid
-	echo "manage_my_process restarted"
 }
 
 # Check for command-line arguments
 case "$1" in
     start)
         start_process
+		echo "manage_my_process started"
         ;;
     stop)
         stop_process
+		echo "manage_my_process stopped"
         ;;
     restart)
-        restart_process
+        stop_process
+		start_process
+		echo "manage_my_process restarted"
         ;;
     *)
         echo "Usage: $0 {start|stop|restart}"
