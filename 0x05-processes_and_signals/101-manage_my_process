@@ -12,15 +12,15 @@ check_root() {
 case "$1" in
     "start")
         check_root
-        ./manage_my_process.sh start
+        ./manage_my_process start
         ;;
     "stop")
         check_root
-        ./manage_my_process.sh stop
+        ./manage_my_process stop
         ;;
     "restart")
         check_root
-        ./manage_my_process.sh restart
+        ./manage_my_process restart
         ;;
     *)
         echo "Usage: $0 {start|stop|restart}"
