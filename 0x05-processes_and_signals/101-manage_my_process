@@ -23,6 +23,7 @@ restart_process() {
 	# start the process
 	./manage_my_process &
 	echo $! > /var/run/my_process.pid
+	echo "manage_my_process restarted"
 }
 
 # Check for command-line arguments
