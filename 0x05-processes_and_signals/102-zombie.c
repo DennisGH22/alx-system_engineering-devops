@@ -5,13 +5,26 @@
 #include <sys/wait.h>
 
 /**
+ * infinite_while - Creates an infinite loop
+ *
+ * Return: Always 0 (never returns)
+*/
+int infinite_while(void)
+{
+	while (1)
+	{
+		sleep(1);
+	}
+	return (0);
+}
+
+/**
  * main - Entry point
  *
  * Description: This program creates 5 zombie processes
- * and demonstrates how to create child processes
- * and wait for them to exit.
+ * and enters an infinite loop.
  *
- * Return: Always 0 on successful execution.
+ * Return: Always 0 (Success).
 */
 int main(void)
 {
@@ -34,14 +47,7 @@ int main(void)
 		}
 	}
 
-	sleep(10);
-
-	printf("Parent process, PID: %d\n", (int)getpid());
-
-	for (i = 0; i < 5; i++)
-	{
-		wait(NULL);
-	}
+	infinite_while();
 
 	return (0);
 }
