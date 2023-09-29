@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Function to check if the script is executed with superuser privileges
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+        echo "This script must be run as root or with sudo."
+        exit 1
+    fi
+}
+
+# Check for command-line arguments
+case "$1" in
+    "start")
+        check_root
+        ./manage_my_process start
+        ;;
+    "stop")
+        check_root
+        ./manage_my_process stop
+        ;;
+    "restart")
+        check_root
+        ./manage_my_process restart
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0

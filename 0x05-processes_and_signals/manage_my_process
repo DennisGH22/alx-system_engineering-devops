@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Function to start the process
+start() {
+    if [ -f "/var/run/my_process.pid" ]; then
+        echo "manage_my_process is already running with PID $(cat /var/run/my_process.pid)."
+    else
+        nohup ./manage_my_process >> /tmp/my_process 2>&1 &
+        echo $! > /var/run/my_process.pid
+        echo "manage_my_process started."
+    fi
+}
+
+# Function to stop the process
+stop() {
+    if [ -f "/var/run/my_process.pid" ]; then
+        pid=$(cat /var/run/my_process.pid)
+        kill $pid
+        rm -f "/var/run/my_process.pid"
+        echo "manage_my_process stopped."
+    else
+        echo "manage_my_process is not running."
+    fi
+}
+
+# Function to restart the process
+restart() {
+    stop
+    start
+    echo "manage_my_process restarted."
+}
+
+# Check for command-line arguments
+case "$1" in
+    "start")
+        start
+        ;;
+    "stop")
+        stop
+        ;;
+    "restart")
+        restart
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
