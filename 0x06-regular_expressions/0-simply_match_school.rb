@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-/School/
+input_string = ARGV[0]
+regex = /School/
+input_string.match?(regex)
