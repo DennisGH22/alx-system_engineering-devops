@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
 input_string = ARGV[0]
 regex = /School/
-puts input_string.match?(regex)
+input_string.match?(regex)
+puts #{input_string}
