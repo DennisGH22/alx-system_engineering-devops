@@ -48,3 +48,5 @@ Issues with this Infrastructure:
 
 3. Servers with All the Same Components:
    Having identical components (database, web server, and application server) can lead to a lack of diversity. If a common vulnerability or issue affects one component, it may impact all servers. Introducing some diversity in components can enhance fault tolerance.
+
+![Diagram](image.png)
