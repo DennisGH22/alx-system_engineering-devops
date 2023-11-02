@@ -47,3 +47,14 @@ Issues with this Infrastructure:
 
 3. No Monitoring:
    - The infrastructure lacks monitoring solutions, making it difficult to track server health, traffic patterns, and other performance metrics.
+
+Infrastructure Diagram:
+
+https://github.com/DennisGH22/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/Diagram1.png
+
+In the Diagram:
+
+1. The user connects to the server which connects to the load balancer.
+2. The load balancer distributes traffic evenly by directing traffic to either the Nginx web server or the application server.
+3. The application server communicates with the database to process dynamic requests.
+4. The database is set up as a Primary-Replica cluster, enhancing performance and fault tolerance.

@@ -37,3 +37,14 @@ Issues with this Infrastructure:
 
 3. Cannot Scale for High Traffic:
    With only one server, it may not handle significant spikes in incoming traffic efficiently. As traffic grows, you'll need to consider strategies for scaling your infrastructure, such as load balancing and auto-scaling mechanisms.
+
+Infrastructure Diagram:
+
+https://github.com/DennisGH22/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/Diagram0.png
+
+In the diagram:
+
+1. The user connects to the server to access the website.
+2. The server hosts both the Nginx web server and the application server.
+3. The application server communicates with the MySQL database.
+4. The website is accessible through the domain name "www.foobar.com," with a DNS record pointing to the server's IP address.

@@ -49,4 +49,14 @@ Issues with this Infrastructure:
 3. Servers with All the Same Components:
    Having identical components (database, web server, and application server) can lead to a lack of diversity. If a common vulnerability or issue affects one component, it may impact all servers. Introducing some diversity in components can enhance fault tolerance.
 
-![Diagram](image.png)
+Infrastructure Diagram:
+
+https://github.com/DennisGH22/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/Diagram2.png
+
+In the diagram:
+
+1. The user connects to the infrastructure through a firewall.
+2. The infrastructure includes three servers: a web server, an application server, and a database.
+3. Each server is protected by a firewall for enhanced security.
+4. A monitoring client is installed on the application server to collect data.
+5. SSL encryption is implemented between the user and the web server.
