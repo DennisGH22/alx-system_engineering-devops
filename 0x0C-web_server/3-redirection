@@ -14,7 +14,7 @@ sudo service nginx start
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
 # Configure Nginx with a new string
-my_new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.alex.com permanent;"
+my_new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/tebogondaba.tech permanent;"
 sudo sed -i "s/server_name _;/$my_new_string/" /etc/nginx/sites-enabled/default
 
 # Restart Nginx
