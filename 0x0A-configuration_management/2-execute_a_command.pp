@@ -1,5 +1,8 @@
 # Execute a command
 
+$paths = ['/usr/bin', '/sbin', '/bin', '/usr/sbin']
+
 exec { 'killmenow':
-  command     => 'pkill -f killmenow'
+  path    => $paths,
+  command => 'pkill -e killmenow'
 }
