@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# RCustom HTTP response header
+
+# Update package list
+sudo apt-get update
+
+# Install Nginx
+sudo apt-get -y install nginx
+
+# Start Nginx service
+sudo service nginx start
+
+# Create a file with "Hello World!" message
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# Configure Nginx with a new string
+redirection_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/tebogondaba.tech permanent;"
+sudo sed -i "s/server_name _;/$redirection_string/" /etc/nginx/sites-enabled/default
+
+# Create a custom 404 page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
+
+# Configure Nginx with a new string for custom 404 page
+new_404_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$new_404_string/" /etc/nginx/sites-enabled/default
+
+sudo sed -i "/listen 80 default_server;/ a\\\tadd_header X-Served-By \"\$HOSTNAME\";" /etc/nginx/sites-enabled/default
+
+# Restart Nginx
+sudo service nginx restart
