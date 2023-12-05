@@ -7,8 +7,6 @@ sudo apt-get update
 # Install Nginx
 sudo apt-get -y install nginx
 
-ufw allow 'Nginx HTTP'
-
 # Start Nginx service
 sudo service nginx start
 
@@ -26,7 +24,14 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
 new_404_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 sudo sed -i "s/listen 80 default_server;/$new_404_string/" /etc/nginx/sites-enabled/default
 
-sudo sed -i "server_name _;\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+# Get the hostname
+hostname=$(hostname)
+
+# Define the custom header configuration
+custom_header="add_header X-Served-By $hostname;"
+
+# Add the custom header to the Nginx default configuration
+sed -i "/listen \[::\]:80 default_server;/a \ \ $custom_header" /etc/nginx/sites-enabled/default
 
 # Restart Nginx
 sudo service nginx restart
