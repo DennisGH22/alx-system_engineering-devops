@@ -13,10 +13,8 @@ echo "ENABLED=1" | sudo tee -a /etc/default/haproxy > /dev/null
 # Backup original configuration
 mv /etc/haproxy/haproxy.cfg{,.original}
 
-# Create a new HAProxy configuration file
-sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOL
 # HAProxy Global Configuration
-global
+prinf %s "global
     log 127.0.0.1 local0 notice
     maxconn 2000
     user haproxy
@@ -47,7 +45,7 @@ backend servers
     balance roundrobin
     server 346505-web-01 54.237.94.18:80 check
     server 346505-web-02 100.26.154.55:80 check
-EOL
+" >> /etc/haproxy/haproxy.cfg # Create a new HAProxy configuration file
 
 # Restart HAProxy
 sudo service haproxy restart
