@@ -5,24 +5,49 @@
 sudo apt-get update
 
 # Install HAProxy
-sudo apt-get -y install haproxy
+sudo apt-get install -y haproxy
 
-# HAProxy configuration
-haproxy_config="frontend
-\tbind *:80
-\tmode http
-\tdefault_backend web-backend
+# Enable HAProxy in default configuration
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy > /dev/null
 
-backend web-backend
-\tbalance roundrobin
-\tserver 346505-web-01 54.237.94.18:80 check
-\tserver 346505-web-02 100.26.154.55:80 check"
+# Backup original configuration
+mv /etc/haproxy/haproxy.cfg{,.original}
 
-# Update HAProxy configuration file
-echo -e "$haproxy_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+# Create a new HAProxy configuration file
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOL
+# HAProxy Global Configuration
+global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
 
-# Enable HAProxy
-echo -e "ENABLED=1\n" | sudo tee -a /etc/default/haproxy
+# Default Configuration
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    retries 3
+    option redispatch
+    timeout connect 5000
+    timeout client  30000
+    timeout server  30000
+
+# Frontend Configuration
+frontend http-in
+    timeout client 30000
+    bind 0:80
+    default_backend servers
+
+# Backend Configuration
+backend servers
+    timeout connect 3000
+    timeout server 30000
+    balance roundrobin
+    server 346505-web-01 54.237.94.18:80 check
+    server 346505-web-02 100.26.154.55:80 check
+EOL
 
 # Restart HAProxy
 sudo service haproxy restart
