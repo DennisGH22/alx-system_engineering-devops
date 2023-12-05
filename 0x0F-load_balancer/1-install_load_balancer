@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get -y install haproxy
 
 # HAProxy configuration
-haproxy_config=frontend
+haproxy_config="frontend
 \tbind *:80
 \tmode http
 \tdefault_backend web-backend
@@ -16,7 +16,7 @@ haproxy_config=frontend
 backend web-backend
 \tbalance roundrobin
 \tserver 346505-web-01 54.237.94.18:80 check
-\tserver 346505-web-02 100.26.154.55:80 check
+\tserver 346505-web-02 100.26.154.55:80 check"
 
 # Update HAProxy configuration file
 echo -e "$haproxy_config" | sudo tee -a /etc/haproxy/haproxy.cfg
