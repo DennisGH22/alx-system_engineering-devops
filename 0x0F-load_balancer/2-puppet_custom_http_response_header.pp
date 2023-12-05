@@ -7,7 +7,7 @@ exec { '/usr/bin/env apt-get -y update' : }
 -> file_line { 'add header' :
    ensure => present,
    line   => "\tadd_header X-Served-By ${hostname};",
-   path   => '/etc/nginx/sites-available/default',
+   path   => '/etc/nginx/sites-enabled/default',
    after  => 'server_name _;',
 }
 
