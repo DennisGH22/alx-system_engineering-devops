@@ -31,7 +31,7 @@ hostname=$(hostname)
 custom_header="add_header X-Served-By $hostname;"
 
 # Add the custom header to the Nginx default configuration
-sed -i "/listen \[::\]:80 default_server;/a \ \ $custom_header" /etc/nginx/sites-available/default
+sed -i "/listen \[::\]:80 default_server;/a \ \ $custom_header" /etc/nginx/sites-enabled/default
 
 # Restart Nginx
 sudo service nginx restart
