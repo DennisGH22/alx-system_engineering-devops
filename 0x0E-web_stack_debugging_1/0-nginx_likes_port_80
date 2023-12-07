@@ -5,10 +5,8 @@
 NGINX_CONF_PATH="/etc/nginx/sites-enabled/default"
 
 # Replace port 8080 with 80 in the Nginx configuration
-sed -i 's/8080/80/g' $NGINX_CONF_PATH
-
-# Test the Nginx configuration before restarting
-nginx -t
+rm $NGINX_CONF_PATH
+ln -s /etc/nginx/sites-available/default $NGINX_CONF_PATH
 
 # Restart Nginx service only if the configuration test passes
 sudo service nginx restart
