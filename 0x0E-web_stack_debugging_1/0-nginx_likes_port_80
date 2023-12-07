@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Nginx port 80
 
-# Define variables for better maintainability
+# Define variable
 NGINX_CONF_PATH="/etc/nginx/sites-enabled/default"
 
 # Replace port 8080 with 80 in the Nginx configuration
-sed -i 's/8080/80/g' "$NGINX_CONF_PATH"
+sed -i 's/8080/80/g' $NGINX_CONF_PATH
 
 # Test the Nginx configuration before restarting
 nginx -t
