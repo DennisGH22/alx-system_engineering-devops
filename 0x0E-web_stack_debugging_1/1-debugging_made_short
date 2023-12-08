@@ -9,7 +9,7 @@ NGINX_SITES_ENABLED="/etc/nginx/sites-enabled/default"
 ln -sf $NGINX_SITES_AVAILABLE $NGINX_SITES_ENABLED
 
 # Restart Nginx service
-sudo service nginx restart
+service nginx start
 
 # Stop the first Nginx process found
 kill $(pgrep 'nginx' | head -1)
