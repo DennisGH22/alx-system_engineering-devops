@@ -2,11 +2,11 @@
 # Display information about subdomains.
 
 domain_information () {
-    local subdomain=$1
-    local domain=$2
-    local answer=$(dig "$domain" | awk '/ANSWER SECTION:/ {getline; print $0}')
-    local record_type=$(echo "$answer" | awk '{print $4}')
-    local destination=$(echo "$answer" | awk '{print $5}')
+    subdomain=$1
+    domain=$2
+    answer=$(dig "$domain" | awk '/ANSWER SECTION:/ {getline; print $0}')
+    record_type=$(echo "$answer" | awk '{print $4}')
+    destination=$(echo "$answer" | awk '{print $5}')
 
     echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
