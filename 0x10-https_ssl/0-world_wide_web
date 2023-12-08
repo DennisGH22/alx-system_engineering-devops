@@ -10,10 +10,10 @@ domain_information() {
     echo "$subdomain $query_result" | awk '{print "The subdomain " $domain " is a " $subdomain " record and points to " $3}'
 }
 
-if [ "$#" -eq 1 ]; then
+if [ "$#" == 1 ]; then
     domain_information "$doamin" "www"
     domain_information "$doamin" "lb-01"
     domain_information "$doamin" "web-01"
     domain_information "$doamin" "web-02"
-elif [ "$#" -eq 2 ]; then
+elif [ "$#" == 2 ]; then
     domain_information "$doamin" "$subdomain"
