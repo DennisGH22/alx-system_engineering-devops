@@ -2,18 +2,17 @@
 # Display information about subdomains.
 
 domain_information() {
-    local subdomain="$2"
-    local domain="$1"
-    local query_result
+    local query_result=$(dig "$2"."$1" +short)
+    local record_type=$(dig "$2"."$1" | awk '/ANSWER SECTION:/ {getline; print $4}')
 
-    query_result=$(dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-    echo "$subdomain $query_result" | awk '{print "The subdomain " $domain " is a " $subdomain " record and points to " $3}'
+    echo "The subdomain $2 is a $record_type record and points to $query_result"
 }
 
-if [ "$#" == 1 ]; then
-    domain_information "$doamin" "www"
-    domain_information "$doamin" "lb-01"
-    domain_information "$doamin" "web-01"
-    domain_information "$doamin" "web-02"
-elif [ "$#" == 2 ]; then
-    domain_information "$doamin" "$subdomain"
+if [ "$#" -eq 1 ]; then
+	subdomains=("www" "lb-01" "web-01" "web-02")
+
+	for subdomain in "${subdomains[@]}"; do
+		domain_information "$1" "$subdomain"
+	done
+elif [ "$#" -eq 2 ]; then
+	domain_information "$1" "$2"
