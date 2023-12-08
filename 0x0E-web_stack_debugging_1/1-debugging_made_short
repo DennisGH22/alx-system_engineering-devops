@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 # Configure Nginx short and sweet.
-
-# Create a symbolic link to the available configuration,
-# force if it already exists
 ln -sf "/etc/nginx/sites-available/default" "/etc/nginx/sites-enabled/default"
-# Restart Nginx service
 service nginx start
-# Stop the first Nginx process found
 kill $(pgrep 'nginx' | head -1)
