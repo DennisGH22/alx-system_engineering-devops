@@ -6,14 +6,14 @@ domain_information() {
     local domain="$1"
     local query_result
 
-    query_result=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-    echo "$subdomain $query_result" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
+    query_result=$(dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+    echo "$subdomain $query_result" | awk '{print "The subdomain " $domain " is a " $subdomain " record and points to " $3}'
 }
 
 if [ "$#" -eq 1 ]; then
-    domain_information "$1" "www"
-    domain_information "$1" "lb-01"
-    domain_information "$1" "web-01"
-    domain_information "$1" "web-02"
+    domain_information "$doamin" "www"
+    domain_information "$doamin" "lb-01"
+    domain_information "$doamin" "web-01"
+    domain_information "$doamin" "web-02"
 elif [ "$#" -eq 2 ]; then
-    domain_information "$1" "$2"
+    domain_information "$doamin" "$subdomain"
