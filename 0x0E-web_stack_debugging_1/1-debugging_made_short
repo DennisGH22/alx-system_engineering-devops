@@ -6,10 +6,10 @@ NGINX_SITES_AVAILABLE="/etc/nginx/sites-available/default"
 NGINX_SITES_ENABLED="/etc/nginx/sites-enabled/default"
 
 # Create a symbolic link to the available configuration, force if it already exists
-ln -sf "$NGINX_SITES_AVAILABLE" "$NGINX_SITES_ENABLED"
+ln -sf $NGINX_SITES_AVAILABLE $NGINX_SITES_ENABLED
 
 # Restart Nginx service
-sudo service nginx start
+sudo service nginx restart
 
 # Stop the first Nginx process found
 kill $(pgrep 'nginx' | head -1)
