@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 # Configure Nginx short and sweet.
-ln -sf "/etc/nginx/sites-available/default" "/etc/nginx/sites-enabled/default"
+
+# Define variables
+NGINX_SITES_AVAILABLE="/etc/nginx/sites-available/default"
+NGINX_SITES_ENABLED="/etc/nginx/sites-enabled/default"
+
+# Create a symbolic link to the available configuration,
+# force if it already exists
+ln -sf "$NGINX_SITES_AVAILABLE" "$NGINX_SITES_ENABLED"
+
+# Restart Nginx service
 service nginx start
-kill $(pgrep 'nginx' | head -1)
+
+# Stop the first Nginx process found
+kill "$(pgrep 'nginx' | head -1)"
