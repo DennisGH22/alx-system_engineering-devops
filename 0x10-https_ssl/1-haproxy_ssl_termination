@@ -52,6 +52,6 @@ backend web-backend
 
 # Frontend configuration for HTTPS
 frontend www-https
-    bind *:443 ssl crt /etc/haproxy/ssl/www.tebogondaba.tech.pem
+    bind *:443 ssl crt /etc/haproxy/ssl/www.tebogondaba.tech
     reqadd X-Forwarded-Proto:\ https
     default_backend web-backend
