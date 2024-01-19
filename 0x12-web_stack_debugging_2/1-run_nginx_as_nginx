@@ -4,4 +4,4 @@ sudo pkill -o apache2
 sudo chmod 744 /etc/nginx/nginx.conf
 sudo sed -i '3i\user nginx;' /etc/nginx/nginx.conf
 sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
-sudo service nginx restart
+su nginx -c 'service nginx restart'
