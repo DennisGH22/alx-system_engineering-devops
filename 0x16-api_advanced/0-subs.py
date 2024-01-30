@@ -7,18 +7,14 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    url = 'https://www.reddit.com/r/{}/about.json'
+    url = f'https://www.reddit.com/r/{subreddit}/about.json'
 
     headers = {'User-Agent': 'my-reddit-client'}
 
-    try:
-        response = requests.get(url.format(subreddit), headers=headers)
+    response = requests.get(url, headers=headers)
 
-        if response.status_code == 200:
-            data = response.json()
-            return data['data']['subscribers']
-        else:
-            return 0
-    except Exception as e:
-        print(f"Error: {e}")
+    if response.status_code == 200:
+        data = response.json()
+        return data['data']['subscribers']
+    else:
         return 0
