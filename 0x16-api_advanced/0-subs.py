@@ -6,8 +6,9 @@ returns the number of subscribers for a given subreddit.
 import requests
 
 
+url = 'https://www.reddit.com/r/{}/about.json'
+
 def number_of_subscribers(subreddit):
-    url = 'https://www.reddit.com/r/{}/about.json'
 
     headers = {'User-Agent': 'my-reddit-client'}
 
