@@ -8,7 +8,8 @@ def top_ten(subreddit):
     headers = {'User-agent': 'my-reddit-client'}
 
     try:
-        response = requests.get(base_url, headers=headers)
+        response = requests.get(base_url,
+                                headers=headers, allow_redirects=False)
 
         response.raise_for_status()
 
