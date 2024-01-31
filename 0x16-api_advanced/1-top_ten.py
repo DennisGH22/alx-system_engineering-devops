@@ -17,6 +17,5 @@ def top_ten(subreddit):
 
         for post in data['data']['children']:
             print(post['data']['title'])
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
-        return None
+    except Exception:
+        print("None")
