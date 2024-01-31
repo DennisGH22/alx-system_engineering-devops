@@ -5,7 +5,7 @@ import requests
 
 def top_ten(subreddit):
     base_url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
-    headers = {'User-agent': 'my-reddit-client'}
+    headers = {'User-agent': 'Mozilla/5.0'}
 
     try:
         response = requests.get(base_url,
