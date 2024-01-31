@@ -4,11 +4,11 @@ import requests
 
 
 def top_ten(subreddit):
-    base_url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
-    headers = {'User-agent': 'Mozilla/5.0'}
+    base_url = 'https://www.reddit.com/r/{}/hot.json?limit=10'
+    headers = {'User-agent': 'my-reddit-client'}
 
     try:
-        response = requests.get(base_url, headers=headers)
+        response = requests.get(base_url.format(subreddit), headers=headers)
 
         response.raise_for_status()
 
